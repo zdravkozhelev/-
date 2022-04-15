@@ -1,0 +1,36 @@
+int sensor = A0;
+void setup()
+{
+ Serial.begin(9600);
+ pinMode(3,OUTPUT);
+ pinMode(4,OUTPUT);
+ pinMode(2,OUTPUT);
+ pinMode(6,OUTPUT);
+}
+void loop()
+{
+int sensorvalues = analogRead(sensor);
+if(sensorvalues >=850)
+{
+digitalWrite(6,1);
+tone(3,1000,200);  
+digitalWrite(4,0);
+digitalWrite(2,0);  
+}
+else if(sensorvalues>=700)
+{
+digitalWrite(6,0);
+noTone(3);
+digitalWrite(2,1);
+digitalWrite(4,0);  
+}
+else
+{
+digitalWrite(6,0);
+noTone(3);
+digitalWrite(2,0);
+digitalWrite(4,1);
+}
+delay(100);
+ Serial.println(sensorvalues);
+}
